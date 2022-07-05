@@ -1,0 +1,16 @@
+.header {
+  height: fit-content;
+  background-color: steelblue;
+  color: whitesmoke;
+  padding: 20px;
+  font-size: xx-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header h2 {
+  font-family: "Courgette", cursive;
+  font-weight: 500;
+  font-size: xx-large;
+}

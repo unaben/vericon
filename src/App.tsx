@@ -1,26 +1,33 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import { getData } from "./apiHooks";
+import BmcComponent from "./components/bmcComponent/BmcComponent";
+import EmeredComponent from "./components/emeredComponent/EmeredComponent";
+import NetworkingComponent from "./components/networkingComponent/NetworkingComponent";
+import AllDevices from "./components/allDevices/AllDevices";
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 
-function App() {
+const App = (): JSX.Element => {
+  const [devices, apiData] = getData();
+  const [active, setActive] = useState<number | string>("");
+
+  useEffect(() => {
+    apiData();
+  }, [apiData]);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Header devices={devices} setActive={setActive} />
+      {active === "" && <AllDevices devices={devices} />}
+      {active === 0 && <BmcComponent devices={devices} />}
+      {active === 1 && <EmeredComponent devices={devices} />}
+      {active === 2 && <NetworkingComponent devices={devices} />}
+      <Footer />
     </div>
   );
-}
+};
 
 export default App;
