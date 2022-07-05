@@ -1,4 +1,3 @@
-import React from "react";
 import { IDevice } from "../../interface";
 
 interface EmeredComponentProps {

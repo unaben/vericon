@@ -1,10 +1,9 @@
-import React from "react";
 import { IDevice } from "../../interface";
 import "../styles/header.styles.css";
 
 interface HeaderProps {
   devices: IDevice[];
-  setActive: (index: number) => void;
+  setActive: (index: number | string) => void;
 }
 
 const Header = ({ devices, setActive }: HeaderProps) => {
@@ -21,13 +20,25 @@ const Header = ({ devices, setActive }: HeaderProps) => {
     <div className="header row mb-3">
       <h2 className="col-6"> Vericon Tech Test</h2>
       <div className="col-6">
-        <div className="d-grid gap-2 d-md-flex justify-content-md-end">
+        <div className="d-grid gap-2 d-md-flex justify-content-center align-items-center justify-content-md-end">
+          <div>
+            <button
+              className="btn btn-outline-light  py-2"
+              style={{ width: "10rem", height: "2rem" }}
+              onClick={() => {
+                setActive("");
+              }}
+            >
+              All Devices
+            </button>
+          </div>
           {uniqueDeviceTypes.map((type, index) => {
             return (
-              <div className="">
+              <div>
                 <button
                   type="button"
-                  className="btn btn-outline-light btn-lg"
+                  className="btn btn-outline-light"
+                  style={{ width: "10rem", height: "2rem" }}
                   onClick={() => {
                     setActive(index);
                   }}
@@ -44,4 +55,3 @@ const Header = ({ devices, setActive }: HeaderProps) => {
 };
 
 export default Header;
-// me-md-2
