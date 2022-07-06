@@ -10,7 +10,7 @@ import AllDevices from "./components/allDevices/AllDevices";
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 
-const App = (): JSX.Element => {
+const App: React.FC = () => {
   const [devices, apiData] = getData();
   const [active, setActive] = useState<number | string>("");
 

@@ -1,10 +1,11 @@
+import React from "react";
 import { IDevice } from "../../interface";
 
 interface EmeredComponentProps {
   devices: IDevice[];
 }
 
-const EmeredComponent = ({ devices }: EmeredComponentProps) => {
+const EmeredComponent:React.FC<EmeredComponentProps> = ({ devices }) => {
   const filteredEmeredDevice = devices.filter((device) => {
     return device.deviceType === "Emered";
   });

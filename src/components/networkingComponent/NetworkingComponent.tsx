@@ -1,10 +1,11 @@
+import React from 'react'
 import { IDevice } from "../../interface";
 
 interface NetworkingComponentProps {
   devices: IDevice[];
 }
 
-const NetworkingComponent = ({ devices }: NetworkingComponentProps) => {
+const NetworkingComponent: React.FC<NetworkingComponentProps> = ({ devices }) => {
   const filteredNetWorkingDeviceType = devices.filter((device) => {
     return device.deviceType === "Networking";
   });

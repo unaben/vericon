@@ -1,9 +1,10 @@
+import React from "react";
 import { IDevice } from "../../interface";
 
 interface AllDevicesProps {
   devices: IDevice[];
 }
-const AllDevices = ({ devices }: AllDevicesProps) => {
+const AllDevices: React.FC<AllDevicesProps> = ({ devices }) => {
   return (
     <div className="container">
       <div className="row justify-content-center gap-1 mt-3">
