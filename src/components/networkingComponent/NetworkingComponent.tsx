@@ -1,56 +1,78 @@
-import React from 'react'
+import React from "react";
 import { IDevice } from "../../interface";
+import {
+  devicePercentageOffline,
+  devicePercentageOnline,
+  // getDeviceData
+} from "../../apiHooks";
 
 interface NetworkingComponentProps {
   devices: IDevice[];
 }
 
-const NetworkingComponent: React.FC<NetworkingComponentProps> = ({ devices }) => {
+// const NetworkingComponent: React.FC = () => {
+// const [totalNetworkDeviceOnline, totalNetworkDevice] = getDeviceData()
+
+// function device(device: any, arg1: any): [any, any] {
+//   throw new Error('Function not implemented.');
+// }
+
+// function resData(resData: any): [any, any] {
+//   throw new Error('Function not implemented.');
+// }
+
+const NetworkingComponent: React.FC<NetworkingComponentProps> = ({
+  devices,
+}) => {
   const filteredNetWorkingDeviceType = devices.filter((device) => {
-    return device.deviceType === "Networking";
+    return device.deviceType === "Neworking";
   });
   const totalNetworkDevice = filteredNetWorkingDeviceType.length;
 
   const filteredNetworkingDeviceOnline = filteredNetWorkingDeviceType.filter(
     (device) => {
-      return device.connectionStatus === "Online";
+      return device.deviceStatus === "active";
     }
   );
   const totalNetworkDeviceOnline = filteredNetworkingDeviceOnline.length;
-  const percentageNetworkDeviceOnline =
-    (totalNetworkDeviceOnline / totalNetworkDevice) * 100;
 
-  const offlineNetworkDevice = totalNetworkDevice - totalNetworkDeviceOnline;
-
-  const percentageNetworkDeviceOffline =
-    (offlineNetworkDevice / totalNetworkDevice) * 100;
+  const onlineDevices = devicePercentageOnline(
+    totalNetworkDeviceOnline,
+    totalNetworkDevice
+  );
+  const offLineDevices = devicePercentageOffline(
+    totalNetworkDeviceOnline,
+    totalNetworkDevice
+  );
   return (
-    <div className="container">
+    <div className="container min-vh-100">
       <div className=" row justify-content-center gap-3">
         <h4 className="border col-md-4 rounded p-2" style={{ width: "18rem" }}>
           Total Devices: {totalNetworkDevice}
         </h4>
         <h4 className="border col-md-4 rounded p-2" style={{ width: "18rem" }}>
-          Offline Devices: {percentageNetworkDeviceOffline.toFixed(2)} %
+          Offline Devices: {offLineDevices.toFixed(2)} %
         </h4>
         <h4 className="border col-md-4 rounded p-2" style={{ width: "18rem" }}>
-          Online Devices: {percentageNetworkDeviceOnline.toFixed(2)} %
+          Online Devices: {onlineDevices.toFixed(2)} %
         </h4>
       </div>
-      <div className="row justify-content-center gap-1 mt-3">
+      <div className="row gap-1 mt-3">
         {filteredNetWorkingDeviceType.map((device) => {
           return (
             <div
-              className="col-sm-12 col-md-4 col-lg-3 mb-3 bg-body rounded"
+              className=" col col-sm-6 col-md-3  mb-2 bg-body rounded"
               style={{ width: "20rem" }}
             >
-              <div className="card">
+              <div className="card" style={{ width: "19rem" }}>
                 <div className="card-header">Networking Device</div>
                 <ul className="list-group list-group-flush">
                   <li className="list-group-item" key={device.id}>
-                    Name : {device.name}
+                    Name : {device.deviceName}
                   </li>
-                  <li className="list-group-item">Status : {device.status}</li>
+                  <li className="list-group-item">
+                    Status : {device.deviceStatus}
+                  </li>
                   <li className="list-group-item">
                     Serial Number: {device.serialNumber}
                   </li>
