@@ -3,7 +3,7 @@ import { IDevice } from "../../interface";
 import {
   devicePercentageOffline,
   devicePercentageOnline,
-} from "../../apiHooks";
+} from "../../hooks/useFetch";
 
 interface BmcComponentProps {
   devices: IDevice[];

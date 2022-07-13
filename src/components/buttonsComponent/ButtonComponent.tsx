@@ -31,7 +31,7 @@ const ButtonComponent: React.FC<ButtonProps> = ({ devices, setActive }) => {
       </div>
       {uniqueDeviceTypes.map((type, index) => {
         return (
-          <div>
+          <div key={index}>
             <button
               type="button"
               className="btn btn-outline-light"

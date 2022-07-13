@@ -3,23 +3,20 @@ import { IDevice } from "../../interface";
 import {
   devicePercentageOffline,
   devicePercentageOnline,
-  // getDeviceData
-} from "../../apiHooks";
+} from "../../hooks/useFetch";
+// import { useFilter } from "../../hooks/useFilter";
+
 
 interface NetworkingComponentProps {
   devices: IDevice[];
 }
 
 // const NetworkingComponent: React.FC = () => {
-// const [totalNetworkDeviceOnline, totalNetworkDevice] = getDeviceData()
+// const {totalNetworkDeviceOnline, 
+//   totalNetworkDevice, 
+//   filteredNetWorkingDeviceType
+// } = useFilter()
 
-// function device(device: any, arg1: any): [any, any] {
-//   throw new Error('Function not implemented.');
-// }
-
-// function resData(resData: any): [any, any] {
-//   throw new Error('Function not implemented.');
-// }
 
 const NetworkingComponent: React.FC<NetworkingComponentProps> = ({
   devices,
@@ -86,4 +83,5 @@ const NetworkingComponent: React.FC<NetworkingComponentProps> = ({
   );
 };
 
-export default NetworkingComponent;
+export default NetworkingComponent
+
